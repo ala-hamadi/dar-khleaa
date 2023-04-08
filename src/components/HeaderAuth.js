@@ -1,11 +1,11 @@
 import React from "react";
 
-export default function Header() {
+export default function HeaderAuth() {
   return (
     <>
-      <header className='ltn__header-area ltn__header-5 ltn__header-logo-and-mobile-menu-in-mobile ltn__header-logo-and-mobile-menu ltn__header-transparent gradient-color-4---'>
+      <header className='ltn__header-area ltn__header-5 ltn__header-transparent--- gradient-color-4---'>
         {/* ltn__header-top-area start */}
-        <div className='ltn__header-top-area top-area-color-white'>
+        <div className='ltn__header-top-area section-bg-6 top-area-color-white---'>
           <div className='container'>
             <div className='row'>
               <div className='col-md-7'>
@@ -28,7 +28,7 @@ export default function Header() {
                 <div className='top-bar-right text-end'>
                   <div className='ltn__top-bar-menu'>
                     <ul>
-                      <li>
+                      <li className='d-none'>
                         {/* ltn__language-menu */}
                         <div className='ltn__drop-menu ltn__currency-menu ltn__language-menu'>
                           <ul>
@@ -87,6 +87,12 @@ export default function Header() {
                           </ul>
                         </div>
                       </li>
+                      <li>
+                        {/* header-top-btn */}
+                        <div className='header-top-btn'>
+                          <a href='add-listing.html'>Add Listing</a>
+                        </div>
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -96,14 +102,14 @@ export default function Header() {
         </div>
         {/* ltn__header-top-area end */}
         {/* ltn__header-middle-area start */}
-        <div className='ltn__header-middle-area ltn__header-sticky ltn__sticky-bg-black'>
+        <div className='ltn__header-middle-area ltn__header-sticky ltn__sticky-bg-white'>
           <div className='container'>
             <div className='row'>
               <div className='col'>
                 <div className='site-logo-wrap'>
                   <div className='site-logo'>
                     <a href='index.html'>
-                      <img src='img/logo-2.png' alt='Logo' />
+                      <img src='img/logo.png' alt='Logo' />
                     </a>
                   </div>
                   <div className='get-support clearfix d-none'>
@@ -119,7 +125,7 @@ export default function Header() {
                   </div>
                 </div>
               </div>
-              <div className='col header-menu-column menu-color-white'>
+              <div className='col header-menu-column'>
                 <div className='header-menu d-none d-xl-block'>
                   <nav>
                     <div className='ltn__main-menu'>
@@ -390,15 +396,71 @@ export default function Header() {
                         <li>
                           <a href='contact.html'>Contact</a>
                         </li>
-                        <li className='special-link'>
-                          <a href='add-listing.html'>Add Listing</a>
-                        </li>
                       </ul>
                     </div>
                   </nav>
                 </div>
               </div>
-              <div className='col--- ltn__header-options ltn__header-options-2 '>
+              <div className='col ltn__header-options ltn__header-options-2 mb-sm-20'>
+                {/* header-search-1 */}
+                <div className='header-search-wrap'>
+                  <div className='header-search-1'>
+                    <div className='search-icon'>
+                      <i className='icon-search for-search-show' />
+                      <i className='icon-cancel  for-search-close' />
+                    </div>
+                  </div>
+                  <div className='header-search-1-form'>
+                    <form id='#' method='get' action='#'>
+                      <input
+                        type='text'
+                        name='search'
+                        defaultValue
+                        placeholder='Search here...'
+                      />
+                      <button type='submit'>
+                        <span>
+                          <i className='icon-search' />
+                        </span>
+                      </button>
+                    </form>
+                  </div>
+                </div>
+                {/* user-menu */}
+                <div className='ltn__drop-menu user-menu'>
+                  <ul>
+                    <li>
+                      <a href='#'>
+                        <i className='icon-user' />
+                      </a>
+                      <ul>
+                        <li>
+                          <a href='login.html'>Sign in</a>
+                        </li>
+                        <li>
+                          <a href='register.html'>Register</a>
+                        </li>
+                        <li>
+                          <a href='account.html'>My Account</a>
+                        </li>
+                        <li>
+                          <a href='wishlist.html'>Wishlist</a>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+                {/* mini-cart */}
+                <div className='mini-cart-icon'>
+                  <a
+                    href='#ltn__utilize-cart-menu'
+                    className='ltn__utilize-toggle'
+                  >
+                    <i className='icon-shopping-cart' />
+                    <sup>2</sup>
+                  </a>
+                </div>
+                {/* mini-cart */}
                 {/* Mobile Menu Button */}
                 <div className='mobile-menu-toggle d-xl-none'>
                   <a
@@ -423,10 +485,8 @@ export default function Header() {
             </div>
           </div>
         </div>
+        {/* ltn__header-middle-area end */}
       </header>
-
-      {/* Utilize Cart Menu End */}
-      {/* Utilize Mobile Menu Start */}
       <div
         id='ltn__utilize-mobile-menu'
         className='ltn__utilize ltn__utilize-mobile-menu'
@@ -623,7 +683,7 @@ export default function Header() {
                     <a href='history.html'>History</a>
                   </li>
                   <li>
-                    <a href='add-listing.html'>Add Listing</a>
+                    <a href='appointment.html'>Appointment</a>
                   </li>
                   <li>
                     <a href='locations.html'>Google Map Locations</a>
