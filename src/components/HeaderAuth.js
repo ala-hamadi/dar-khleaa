@@ -1,6 +1,20 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import logo from "../assets/img/logo.png";
 
 export default function HeaderAuth() {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const [userCo, setUserCo] = useState();
+  useEffect(() => {
+    axios.get(`/findByEmail/${user?.email}`).then((res) => {
+      setUserCo(res.data);
+    });
+  }, []);
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    window.location.href = "/";
+  };
   return (
     <>
       <header className='ltn__header-area ltn__header-5 ltn__header-transparent--- gradient-color-4---'>
@@ -12,13 +26,19 @@ export default function HeaderAuth() {
                 <div className='ltn__top-bar-menu'>
                   <ul>
                     <li>
-                      <a href='mailto:info@webmail.com?Subject=Flower%20greetings%20to%20you'>
-                        <i className='icon-mail' /> info@webmail.com
+                      <a href='mailto:Contact@as-referencement.com'>
+                        <i className='icon-mail' /> Contact@as-referencement.com
                       </a>
                     </li>
                     <li>
-                      <a href='locations.html'>
-                        <i className='icon-placeholder' /> 15/A, Nest Tower, NYC
+                      <a href='#'>
+                        <i className='icon-placeholder' /> AS Référ., Av. Habib
+                        Bourguiba
+                      </a>
+                    </li>
+                    <li>
+                      <a href=''>
+                        <i className='icon-call' /> +216 25 693 159
                       </a>
                     </li>
                   </ul>
@@ -40,20 +60,12 @@ export default function HeaderAuth() {
                                 <li>
                                   <a href='#'>Arabic</a>
                                 </li>
-                                <li>
-                                  <a href='#'>Bengali</a>
-                                </li>
-                                <li>
-                                  <a href='#'>Chinese</a>
-                                </li>
+
                                 <li>
                                   <a href='#'>English</a>
                                 </li>
                                 <li>
                                   <a href='#'>French</a>
-                                </li>
-                                <li>
-                                  <a href='#'>Hindi</a>
                                 </li>
                               </ul>
                             </li>
@@ -65,23 +77,27 @@ export default function HeaderAuth() {
                         <div className='ltn__social-media'>
                           <ul>
                             <li>
-                              <a href='#' title='Facebook'>
+                              <a
+                                href='https://www.facebook.com/referencementas'
+                                title='Facebook'
+                              >
                                 <i className='fab fa-facebook-f' />
                               </a>
                             </li>
                             <li>
-                              <a href='#' title='Twitter'>
-                                <i className='fab fa-twitter' />
-                              </a>
-                            </li>
-                            <li>
-                              <a href='#' title='Instagram'>
+                              <a
+                                href='https://www.instagram.com/as.referencement/'
+                                title='Instagram'
+                              >
                                 <i className='fab fa-instagram' />
                               </a>
                             </li>
                             <li>
-                              <a href='#' title='Dribbble'>
-                                <i className='fab fa-dribbble' />
+                              <a
+                                href='https://www.linkedin.com/company/as-r-f-rencement/'
+                                title='Linkedin'
+                              >
+                                <i className='fab fa-linkedin' />
                               </a>
                             </li>
                           </ul>
@@ -90,7 +106,11 @@ export default function HeaderAuth() {
                       <li>
                         {/* header-top-btn */}
                         <div className='header-top-btn'>
-                          <a href='add-listing.html'>Add Listing</a>
+                          {!user?.email ? (
+                            <a href='/signin'>Signin</a>
+                          ) : (
+                            <a href='/add-location'>Add Location</a>
+                          )}
                         </div>
                       </li>
                     </ul>
@@ -108,8 +128,8 @@ export default function HeaderAuth() {
               <div className='col'>
                 <div className='site-logo-wrap'>
                   <div className='site-logo'>
-                    <a href='index.html'>
-                      <img src='img/logo.png' alt='Logo' />
+                    <a href='/'>
+                      <img src={logo} alt='Logo' style={{ width: "50%" }} />
                     </a>
                   </div>
                   <div className='get-support clearfix d-none'>
@@ -130,271 +150,30 @@ export default function HeaderAuth() {
                   <nav>
                     <div className='ltn__main-menu'>
                       <ul>
-                        <li className='menu-icon'>
-                          <a href='#'>Home</a>
-                          <ul className='sub-menu menu-pages-img-show'>
-                            <li>
-                              <a href='index.html'>Home Style 01</a>
-                              <img src='img/home-demos/home-1.jpg' alt='#' />
-                            </li>
-                            <li>
-                              <a href='index-2.html'>Home Style 02</a>
-                              <img src='img/home-demos/home-2.jpg' alt='#' />
-                            </li>
-                            <li>
-                              <a href='index-3.html'>Home Style 03</a>
-                              <img src='img/home-demos/home-3.jpg' alt='#' />
-                            </li>
-                            <li>
-                              <a href='index-4.html'>Home Style 04</a>
-                              <img src='img/home-demos/home-4.jpg' alt='#' />
-                            </li>
-                            <li>
-                              <a href='index-5.html'>
-                                Home Style 05{" "}
-                                <span className='menu-item-badge'>video</span>
-                              </a>
-                              <img src='img/home-demos/home-5.jpg' alt='#' />
-                            </li>
-                            <li>
-                              <a href='index-6.html'>Home Style 06</a>
-                              <img src='img/home-demos/home-6.jpg' alt='#' />
-                            </li>
-                            <li>
-                              <a href='index-7.html'>Home Style 07</a>
-                              <img src='img/home-demos/home-7.jpg' alt='#' />
-                            </li>
-                            <li>
-                              <a href='index-8.html'>Home Style 08</a>
-                              <img src='img/home-demos/home-8.jpg' alt='#' />
-                            </li>
-                            <li>
-                              <a href='index-9.html'>Home Style 09</a>
-                              <img src='img/home-demos/home-9.jpg' alt='#' />
-                            </li>
-                            <li>
-                              <a href='index-10.html'>
-                                Home Style 10{" "}
-                                <span className='menu-item-badge'>Map</span>
-                              </a>
-                              <img src='img/home-demos/home-10.jpg' alt='#' />
-                            </li>
-                            <li>
-                              <a href='index-11.html'>Home Style 11</a>
-                              <img src='img/home-demos/home-11.jpg' alt='#' />
-                            </li>
-                          </ul>
-                        </li>
-                        <li className='menu-icon'>
-                          <a href='#'>About</a>
-                          <ul>
-                            <li>
-                              <a href='about.html'>About</a>
-                            </li>
-                            <li>
-                              <a href='service.html'>Services</a>
-                            </li>
-                            <li>
-                              <a href='service-details.html'>Service Details</a>
-                            </li>
-                            <li>
-                              <a href='portfolio.html'>Portfolio</a>
-                            </li>
-                            <li>
-                              <a href='portfolio-2.html'>Portfolio - 02</a>
-                            </li>
-                            <li>
-                              <a href='portfolio-details.html'>
-                                Portfolio Details
-                              </a>
-                            </li>
-                            <li>
-                              <a href='team.html'>Team</a>
-                            </li>
-                            <li>
-                              <a href='team-details.html'>Team Details</a>
-                            </li>
-                            <li>
-                              <a href='faq.html'>FAQ</a>
-                            </li>
-                            <li>
-                              <a href='locations.html'>Google Map Locations</a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li className='menu-icon'>
-                          <a href='#'>Shop</a>
-                          <ul>
-                            <li>
-                              <a href='shop.html'>Shop</a>
-                            </li>
-                            <li>
-                              <a href='shop-grid.html'>Shop Grid</a>
-                            </li>
-                            <li>
-                              <a href='shop-left-sidebar.html'>
-                                Shop Left sidebar
-                              </a>
-                            </li>
-                            <li>
-                              <a href='shop-right-sidebar.html'>
-                                Shop right sidebar
-                              </a>
-                            </li>
-                            <li>
-                              <a href='product-details.html'>Shop details </a>
-                            </li>
-                            <li>
-                              <a href='#'>
-                                Other Pages{" "}
-                                <span className='float-end'>&gt;&gt;</span>
-                              </a>
-                              <ul>
-                                <li>
-                                  <a href='cart.html'>Cart</a>
-                                </li>
-                                <li>
-                                  <a href='wishlist.html'>Wishlist</a>
-                                </li>
-                                <li>
-                                  <a href='checkout.html'>Checkout</a>
-                                </li>
-                                <li>
-                                  <a href='order-tracking.html'>
-                                    Order Tracking
-                                  </a>
-                                </li>
-                                <li>
-                                  <a href='account.html'>My Account</a>
-                                </li>
-                                <li>
-                                  <a href='login.html'>Sign in</a>
-                                </li>
-                                <li>
-                                  <a href='register.html'>Register</a>
-                                </li>
-                              </ul>
-                            </li>
-                          </ul>
-                        </li>
-                        <li className='menu-icon'>
-                          <a href='#'>News</a>
-                          <ul>
-                            <li>
-                              <a href='blog.html'>News</a>
-                            </li>
-                            <li>
-                              <a href='blog-grid.html'>News Grid</a>
-                            </li>
-                            <li>
-                              <a href='blog-left-sidebar.html'>
-                                News Left sidebar
-                              </a>
-                            </li>
-                            <li>
-                              <a href='blog-right-sidebar.html'>
-                                News Right sidebar
-                              </a>
-                            </li>
-                            <li>
-                              <a href='blog-details.html'>News details</a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li className='menu-icon'>
-                          <a href='#'>Pages</a>
-                          <ul className='mega-menu'>
-                            <li>
-                              <a href='#'>Inner Pages</a>
-                              <ul>
-                                <li>
-                                  <a href='portfolio.html'>Portfolio</a>
-                                </li>
-                                <li>
-                                  <a href='portfolio-2.html'>Portfolio - 02</a>
-                                </li>
-                                <li>
-                                  <a href='portfolio-details.html'>
-                                    Portfolio Details
-                                  </a>
-                                </li>
-                                <li>
-                                  <a href='team.html'>Team</a>
-                                </li>
-                                <li>
-                                  <a href='team-details.html'>Team Details</a>
-                                </li>
-                                <li>
-                                  <a href='faq.html'>FAQ</a>
-                                </li>
-                              </ul>
-                            </li>
-                            <li>
-                              <a href='#'>Inner Pages</a>
-                              <ul>
-                                <li>
-                                  <a href='history.html'>History</a>
-                                </li>
-                                <li>
-                                  <a href='add-listing.html'>Add Listing</a>
-                                </li>
-                                <li>
-                                  <a href='locations.html'>
-                                    Google Map Locations
-                                  </a>
-                                </li>
-                                <li>
-                                  <a href='404.html'>404</a>
-                                </li>
-                                <li>
-                                  <a href='contact.html'>Contact</a>
-                                </li>
-                                <li>
-                                  <a href='coming-soon.html'>Coming Soon</a>
-                                </li>
-                              </ul>
-                            </li>
-                            <li>
-                              <a href='#'>Shop Pages</a>
-                              <ul>
-                                <li>
-                                  <a href='shop.html'>Shop</a>
-                                </li>
-                                <li>
-                                  <a href='shop-left-sidebar.html'>
-                                    Shop Left sidebar
-                                  </a>
-                                </li>
-                                <li>
-                                  <a href='shop-right-sidebar.html'>
-                                    Shop right sidebar
-                                  </a>
-                                </li>
-                                <li>
-                                  <a href='shop-grid.html'>Shop Grid</a>
-                                </li>
-                                <li>
-                                  <a href='product-details.html'>
-                                    Shop details{" "}
-                                  </a>
-                                </li>
-                                <li>
-                                  <a href='cart.html'>Cart</a>
-                                </li>
-                              </ul>
-                            </li>
-                            <li>
-                              <a href='shop.html'>
-                                <img
-                                  src='img/banner/menu-banner-1.jpg'
-                                  alt='#'
-                                />
-                              </a>
-                            </li>
-                          </ul>
+                        <li>
+                          <a href='/'>Home</a>
                         </li>
                         <li>
-                          <a href='contact.html'>Contact</a>
+                          <a href='/search'>Search</a>
+                        </li>
+
+                        <li>
+                          {!user?.email ? (
+                            <a href='/about'>About</a>
+                          ) : (
+                            <a href='/user-account'>Profile</a>
+                          )}
+                        </li>
+
+                        <li>
+                          <a href='contact-us'>Contact</a>
+                        </li>
+                        <li className='special-link'>
+                          {!user?.email ? (
+                            <a href='/signin'>Signin</a>
+                          ) : (
+                            <a href='/add-location'>Add Location</a>
+                          )}{" "}
                         </li>
                       </ul>
                     </div>
@@ -403,64 +182,41 @@ export default function HeaderAuth() {
               </div>
               <div className='col ltn__header-options ltn__header-options-2 mb-sm-20'>
                 {/* header-search-1 */}
-                <div className='header-search-wrap'>
-                  <div className='header-search-1'>
-                    <div className='search-icon'>
-                      <i className='icon-search for-search-show' />
-                      <i className='icon-cancel  for-search-close' />
-                    </div>
-                  </div>
-                  <div className='header-search-1-form'>
-                    <form id='#' method='get' action='#'>
-                      <input
-                        type='text'
-                        name='search'
-                        defaultValue
-                        placeholder='Search here...'
-                      />
-                      <button type='submit'>
-                        <span>
-                          <i className='icon-search' />
-                        </span>
-                      </button>
-                    </form>
-                  </div>
-                </div>
+
                 {/* user-menu */}
-                <div className='ltn__drop-menu user-menu'>
-                  <ul>
-                    <li>
-                      <a href='#'>
-                        <i className='icon-user' />
-                      </a>
-                      <ul>
-                        <li>
-                          <a href='login.html'>Sign in</a>
-                        </li>
-                        <li>
-                          <a href='register.html'>Register</a>
-                        </li>
-                        <li>
-                          <a href='account.html'>My Account</a>
-                        </li>
-                        <li>
-                          <a href='wishlist.html'>Wishlist</a>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </div>
-                {/* mini-cart */}
-                <div className='mini-cart-icon'>
-                  <a
-                    href='#ltn__utilize-cart-menu'
-                    className='ltn__utilize-toggle'
-                  >
-                    <i className='icon-shopping-cart' />
-                    <sup>2</sup>
-                  </a>
-                </div>
-                {/* mini-cart */}
+                {user && (
+                  <div className='ltn__drop-menu user-menu'>
+                    <ul>
+                      <li>
+                        <a href='#'>
+                          <img
+                            src={`http://127.0.0.1:8000/uploads/${userCo?.image}`}
+                            alt='#'
+                          />{" "}
+                        </a>
+                        <ul>
+                          <li>
+                            <a href='user-account'>My Account</a>
+                          </li>
+                          {userCo?.roles[0] === "ROLE_ADMIN" && (
+                            <li>
+                              <a href='http://localhost:3000/'>
+                                Admin dashboard
+                              </a>
+                            </li>
+                          )}
+
+                          <li>
+                            <a href='#' onClick={handleLogout}>
+                              Logout
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                )}
+
                 {/* Mobile Menu Button */}
                 <div className='mobile-menu-toggle d-xl-none'>
                   <a
@@ -494,8 +250,8 @@ export default function HeaderAuth() {
         <div className='ltn__utilize-menu-inner ltn__scrollbar'>
           <div className='ltn__utilize-menu-head'>
             <div className='site-logo'>
-              <a href='index.html'>
-                <img src='img/logo.png' alt='Logo' />
+              <a href='/'>
+                <img src={logo} alt='Logo' />
               </a>
             </div>
             <button className='ltn__utilize-close'>×</button>
@@ -510,197 +266,26 @@ export default function HeaderAuth() {
           </div>
           <div className='ltn__utilize-menu'>
             <ul>
-              <li>
-                <a href='#'>Home</a>
-                <ul className='sub-menu'>
-                  <li>
-                    <a href='index.html'>Home Style 01</a>
-                  </li>
-                  <li>
-                    <a href='index-2.html'>Home Style 02</a>
-                  </li>
-                  <li>
-                    <a href='index-3.html'>Home Style 03</a>
-                  </li>
-                  <li>
-                    <a href='index-4.html'>Home Style 04</a>
-                  </li>
-                  <li>
-                    <a href='index-5.html'>
-                      Home Style 05{" "}
-                      <span className='menu-item-badge'>video</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href='index-6.html'>Home Style 06</a>
-                  </li>
-                  <li>
-                    <a href='index-7.html'>Home Style 07</a>
-                  </li>
-                  <li>
-                    <a href='index-8.html'>Home Style 08</a>
-                  </li>
-                  <li>
-                    <a href='index-9.html'>Home Style 09</a>
-                  </li>
-                  <li>
-                    <a href='index-10.html'>
-                      Home Style 10 <span className='menu-item-badge'>Map</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href='index-11.html'>Home Style 11</a>
-                  </li>
-                </ul>
+              <li className='menu-icon'>
+                <a href='/'>Home</a>
               </li>
-              <li>
-                <a href='#'>About</a>
-                <ul className='sub-menu'>
-                  <li>
-                    <a href='about.html'>About</a>
-                  </li>
-                  <li>
-                    <a href='service.html'>Services</a>
-                  </li>
-                  <li>
-                    <a href='service-details.html'>Service Details</a>
-                  </li>
-                  <li>
-                    <a href='portfolio.html'>Portfolio</a>
-                  </li>
-                  <li>
-                    <a href='portfolio-2.html'>Portfolio - 02</a>
-                  </li>
-                  <li>
-                    <a href='portfolio-details.html'>Portfolio Details</a>
-                  </li>
-                  <li>
-                    <a href='team.html'>Team</a>
-                  </li>
-                  <li>
-                    <a href='team-details.html'>Team Details</a>
-                  </li>
-                  <li>
-                    <a href='faq.html'>FAQ</a>
-                  </li>
-                  <li>
-                    <a href='locations.html'>Google Map Locations</a>
-                  </li>
-                </ul>
+              <li className='menu-icon'>
+                <a href='/search'>Search</a>
               </li>
-              <li>
-                <a href='#'>Shop</a>
-                <ul className='sub-menu'>
-                  <li>
-                    <a href='shop.html'>Shop</a>
-                  </li>
-                  <li>
-                    <a href='shop-grid.html'>Shop Grid</a>
-                  </li>
-                  <li>
-                    <a href='shop-left-sidebar.html'>Shop Left sidebar</a>
-                  </li>
-                  <li>
-                    <a href='shop-right-sidebar.html'>Shop right sidebar</a>
-                  </li>
-                  <li>
-                    <a href='product-details.html'>Shop details </a>
-                  </li>
-                  <li>
-                    <a href='cart.html'>Cart</a>
-                  </li>
-                  <li>
-                    <a href='wishlist.html'>Wishlist</a>
-                  </li>
-                  <li>
-                    <a href='checkout.html'>Checkout</a>
-                  </li>
-                  <li>
-                    <a href='order-tracking.html'>Order Tracking</a>
-                  </li>
-                  <li>
-                    <a href='account.html'>My Account</a>
-                  </li>
-                  <li>
-                    <a href='login.html'>Sign in</a>
-                  </li>
-                  <li>
-                    <a href='register.html'>Register</a>
-                  </li>
-                </ul>
+
+              <li className='menu-icon'>
+                <a href='/user-account'>Profile</a>
               </li>
+
               <li>
-                <a href='#'>News</a>
-                <ul className='sub-menu'>
-                  <li>
-                    <a href='blog.html'>News</a>
-                  </li>
-                  <li>
-                    <a href='blog-grid.html'>News Grid</a>
-                  </li>
-                  <li>
-                    <a href='blog-left-sidebar.html'>News Left sidebar</a>
-                  </li>
-                  <li>
-                    <a href='blog-right-sidebar.html'>News Right sidebar</a>
-                  </li>
-                  <li>
-                    <a href='blog-details.html'>News details</a>
-                  </li>
-                </ul>
+                <a href='contact-us'>Contact</a>
               </li>
-              <li>
-                <a href='#'>Pages</a>
-                <ul className='sub-menu'>
-                  <li>
-                    <a href='about.html'>About</a>
-                  </li>
-                  <li>
-                    <a href='service.html'>Services</a>
-                  </li>
-                  <li>
-                    <a href='service-details.html'>Service Details</a>
-                  </li>
-                  <li>
-                    <a href='portfolio.html'>Portfolio</a>
-                  </li>
-                  <li>
-                    <a href='portfolio-2.html'>Portfolio - 02</a>
-                  </li>
-                  <li>
-                    <a href='portfolio-details.html'>Portfolio Details</a>
-                  </li>
-                  <li>
-                    <a href='team.html'>Team</a>
-                  </li>
-                  <li>
-                    <a href='team-details.html'>Team Details</a>
-                  </li>
-                  <li>
-                    <a href='faq.html'>FAQ</a>
-                  </li>
-                  <li>
-                    <a href='history.html'>History</a>
-                  </li>
-                  <li>
-                    <a href='appointment.html'>Appointment</a>
-                  </li>
-                  <li>
-                    <a href='locations.html'>Google Map Locations</a>
-                  </li>
-                  <li>
-                    <a href='404.html'>404</a>
-                  </li>
-                  <li>
-                    <a href='contact.html'>Contact</a>
-                  </li>
-                  <li>
-                    <a href='coming-soon.html'>Coming Soon</a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a href='contact.html'>Contact</a>
+              <li className='special-link'>
+                {!user?.email ? (
+                  <a href='/signin'>Signin</a>
+                ) : (
+                  <a href='/add-location'>Add Location</a>
+                )}{" "}
               </li>
             </ul>
           </div>
@@ -737,23 +322,27 @@ export default function HeaderAuth() {
           <div className='ltn__social-media-2'>
             <ul>
               <li>
-                <a href='#' title='Facebook'>
+                <a
+                  href='https://www.facebook.com/referencementas'
+                  title='Facebook'
+                >
                   <i className='fab fa-facebook-f' />
                 </a>
               </li>
               <li>
-                <a href='#' title='Twitter'>
-                  <i className='fab fa-twitter' />
-                </a>
-              </li>
-              <li>
-                <a href='#' title='Linkedin'>
-                  <i className='fab fa-linkedin' />
-                </a>
-              </li>
-              <li>
-                <a href='#' title='Instagram'>
+                <a
+                  href='https://www.instagram.com/as.referencement/'
+                  title='Instagram'
+                >
                   <i className='fab fa-instagram' />
+                </a>
+              </li>
+              <li>
+                <a
+                  href='https://www.linkedin.com/company/as-r-f-rencement/'
+                  title='Linkedin'
+                >
+                  <i className='fab fa-linkedin' />
                 </a>
               </li>
             </ul>

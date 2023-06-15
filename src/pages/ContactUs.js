@@ -1,10 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import Footer from "../components/Footer";
 import HeaderAuth from "../components/HeaderAuth";
-
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import mail from '../assets/img/icon/mail.png';
+import phone from '../assets/img/icon/phone.webp';
+import location from '../assets/img/icon/location.png';
+import { notify } from "../utils";
+import axios from "axios";
+import { Link } from "react-router-dom";
 export default function ContactUs() {
+  const [email, setEmail] = useState("");
+  const [description, setDescription] = useState("");
+
+  const sendContact = (e) => {
+    e.preventDefault();
+    const contact = {
+      emailUser: email,
+      description,
+    };
+    axios
+      .post(`/contactUser`, contact)
+      .then((res) => {
+        notify("message was sent successfully!", toast, "success");
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <div className='body-wrapper'>
+      <ToastContainer />
       <HeaderAuth />
       <div className='ltn__utilize-overlay' />
       {/* BREADCRUMB AREA START */}
@@ -20,12 +47,12 @@ export default function ContactUs() {
                 <div className='ltn__breadcrumb-list'>
                   <ul>
                     <li>
-                      <a href='index.html'>
+                      <Link to={"/"}>
                         <span className='ltn__secondary-color'>
                           <i className='fas fa-home' />
                         </span>{" "}
                         Home
-                      </a>
+                      </Link>
                     </li>
                     <li>Contact</li>
                   </ul>
@@ -43,35 +70,36 @@ export default function ContactUs() {
             <div className='col-lg-4'>
               <div className='ltn__contact-address-item ltn__contact-address-item-3 box-shadow'>
                 <div className='ltn__contact-address-icon'>
-                  <img src='img/icons/10.png' alt='Icon Image' />
+                  <img src={mail} alt='Icon Image' />
                 </div>
                 <h3>Email Address</h3>
                 <p>
-                  info@webmail.com <br />
-                  jobs@webexample.com
+                  a.ouanes@gmail.com <br />
+                  as.hanagermazi@gmail.com
                 </p>
               </div>
             </div>
             <div className='col-lg-4'>
               <div className='ltn__contact-address-item ltn__contact-address-item-3 box-shadow'>
                 <div className='ltn__contact-address-icon'>
-                  <img src='img/icons/11.png' alt='Icon Image' />
+                  <img src={phone} alt='Icon Image' />
                 </div>
                 <h3>Phone Number</h3>
                 <p>
-                  +0123-456789 <br /> +987-6543210
+                  +216 25 693 159 <br />
+                  +216 71 705 215 <br/>
+                  +216 98 562 077
                 </p>
               </div>
             </div>
             <div className='col-lg-4'>
               <div className='ltn__contact-address-item ltn__contact-address-item-3 box-shadow'>
                 <div className='ltn__contact-address-icon'>
-                  <img src='img/icons/12.png' alt='Icon Image' />
+                  <img src={location} alt='Icon Image' />
                 </div>
                 <h3>Office Address</h3>
                 <p>
-                  18/A, New Born Town Hall <br />
-                  New York, US
+                  AS Référencement Av. Habib Bourguiba, Tunis
                 </p>
               </div>
             </div>
@@ -85,7 +113,7 @@ export default function ContactUs() {
           <div className='row'>
             <div className='col-lg-12'>
               <div className='ltn__form-box contact-form-box box-shadow white-bg'>
-                <h4 className='title-2'>Get A Quote</h4>
+                <h4 className='title-2'>Send a message</h4>
                 <form
                   id='contact-form'
                   action='https://tunatheme.com/tf/html/quarter-preview/quarter/mail.php'
@@ -93,42 +121,13 @@ export default function ContactUs() {
                 >
                   <div className='row'>
                     <div className='col-md-6'>
-                      <div className='input-item input-item-name ltn__custom-icon'>
-                        <input
-                          type='text'
-                          name='name'
-                          placeholder='Enter your name'
-                        />
-                      </div>
-                    </div>
-                    <div className='col-md-6'>
                       <div className='input-item input-item-email ltn__custom-icon'>
                         <input
                           type='email'
                           name='email'
                           placeholder='Enter email address'
-                        />
-                      </div>
-                    </div>
-                    <div className='col-md-6'>
-                      <div className='input-item'>
-                        <select className='nice-select'>
-                          <option>Select Service Type</option>
-                          <option>Property Management </option>
-                          <option>Mortgage Service </option>
-                          <option>Consulting Service</option>
-                          <option>Home Buying</option>
-                          <option>Home Selling</option>
-                          <option>Escrow Services</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div className='col-md-6'>
-                      <div className='input-item input-item-phone ltn__custom-icon'>
-                        <input
-                          type='text'
-                          name='phone'
-                          placeholder='Enter phone number'
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
                         />
                       </div>
                     </div>
@@ -138,6 +137,8 @@ export default function ContactUs() {
                       name='message'
                       placeholder='Enter message'
                       defaultValue={""}
+                      value={description}
+                      onChange={(e) => setDescription(e.target.value)}
                     />
                   </div>
                   <p>
@@ -151,6 +152,7 @@ export default function ContactUs() {
                     <button
                       className='btn theme-btn-1 btn-effect-1 text-uppercase'
                       type='submit'
+                      onClick={sendContact}
                     >
                       get a free service
                     </button>

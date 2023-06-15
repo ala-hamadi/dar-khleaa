@@ -9,8 +9,13 @@ import LocationDetail from "./pages/LocationDetail";
 import Search from "./pages/Search";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
-import UserAccount from "./pages/UserAccount";
 
+import About from './pages/About';
+import UserAccount from "./pages/UserAccount";
+import axios from "axios";
+import UpdateLocation from "./pages/UpdateLocation";
+
+axios.defaults.baseURL = "http://127.0.0.1:8000";
 function App() {
   return (
     <Suspense
@@ -30,10 +35,12 @@ function App() {
         <Route exact path='/signup' element={<Signup />} />
         <Route exact path='/signin' element={<Signin />} />
         <Route exact path='/add-location' element={<AddLocation />} />
+        <Route exact path='/about' element={<About />} />
         <Route exact path='/contact-us' element={<ContactUs />} />
         <Route exact path='/search' element={<Search />} />
-        <Route exact path='/location-detail' element={<LocationDetail />} />
+        <Route exact path='/location-detail/:id' element={<LocationDetail />} />
         <Route exact path='/user-account' element={<UserAccount />} />
+        <Route exact path='/update-location/:id' element={<UpdateLocation />} />
       </Routes>
     </Suspense>
   );

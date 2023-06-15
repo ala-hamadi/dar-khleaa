@@ -1,10 +1,51 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import HeaderAuth from "../components/HeaderAuth";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
+import { notify } from "../utils";
+import { Link } from "react-router-dom";
+import jwtDecode from "jwt-decode";
 
 export default function Signin() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const user = JSON.parse(localStorage.getItem("user"));
+  console.log(user);
+  useEffect(() => {
+    if (localStorage.getItem("user")) {
+      // alert("hi");
+      window.location.href = "/";
+    }
+  }, []);
+  const loginAccount = (e) => {
+    e.preventDefault();
+    const user = {
+      email,
+      password,
+    };
+    axios
+      .post(`/api/login_check`, user)
+      .then((res) => {
+        if (res.data.token) {
+          const decodeToken = jwtDecode(res.data.token);
+          console.log(decodeToken);
+          localStorage.setItem("user", JSON.stringify(decodeToken));
+
+          window.location.href = "/";
+          console.log(res);
+        }
+      })
+      .catch((err) => {
+        notify("user not exist!", toast, "error");
+
+        console.log(err);
+      });
+  };
   return (
     <div className='body-wrapper'>
+      <ToastContainer />
       <HeaderAuth />
       <div
         className='ltn__breadcrumb-area text-left bg-overlay-white-30 bg-image '
@@ -18,12 +59,12 @@ export default function Signin() {
                 <div className='ltn__breadcrumb-list'>
                   <ul>
                     <li>
-                      <a href='index.html'>
+                      <Link to={"/"}>
                         <span className='ltn__secondary-color'>
                           <i className='fas fa-home' />
                         </span>{" "}
                         Home
-                      </a>
+                      </Link>
                     </li>
                     <li>Login</li>
                   </ul>
@@ -56,14 +97,26 @@ export default function Signin() {
             <div className='col-lg-6'>
               <div className='account-login-inner'>
                 <form action='#' className='ltn__form-box contact-form-box'>
-                  <input type='text' name='email' placeholder='Email*' />
+                  <input
+                    type='text'
+                    name='email'
+                    placeholder='Email*'
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
                   <input
                     type='password'
                     name='password'
                     placeholder='Password*'
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                   <div className='btn-wrapper mt-0'>
-                    <button className='theme-btn-1 btn btn-block' type='submit'>
+                    <button
+                      className='theme-btn-1 btn btn-block'
+                      type='submit'
+                      onClick={loginAccount}
+                    >
                       SIGN IN
                     </button>
                   </div>
@@ -89,7 +142,7 @@ export default function Signin() {
                   check out more quickly track your orders register
                 </p>
                 <div className='btn-wrapper'>
-                  <a href='register.html' className='theme-btn-1 btn black-btn'>
+                  <a href='signup' className='theme-btn-1 btn black-btn'>
                     CREATE ACCOUNT
                   </a>
                 </div>

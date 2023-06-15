@@ -1,5 +1,5 @@
 import React from "react";
-
+import logo from "../assets/img/logo.png";
 export default function Footer() {
   return (
     <>
@@ -11,13 +11,14 @@ export default function Footer() {
                 <div className='footer-widget footer-about-widget'>
                   <div className='footer-logo'>
                     <div className='site-logo'>
-                      <img src='img/logo-2.png' alt='Logo' />
+                      <img
+                        src={logo}
+                        alt='Logo'
+                        style={{ width: "50%", height: "50%" }}
+                      />
                     </div>
                   </div>
-                  <p>
-                    Lorem Ipsum is simply dummy text of the and typesetting
-                    industry. Lorem Ipsum is dummy text of the printing.
-                  </p>
+
                   <div className='footer-address'>
                     <ul>
                       <li>
@@ -25,7 +26,7 @@ export default function Footer() {
                           <i className='icon-placeholder' />
                         </div>
                         <div className='footer-address-info'>
-                          <p>Brooklyn, New York, United States</p>
+                          <p>AS Référencement, Av. Habib Bourguiba, Tunis</p>
                         </div>
                       </li>
                       <li>
@@ -34,7 +35,7 @@ export default function Footer() {
                         </div>
                         <div className='footer-address-info'>
                           <p>
-                            <a href='tel:+0123-456789'>+0123-456789</a>
+                            <a href='#'>+216 25 693 159</a>
                           </p>
                         </div>
                       </li>
@@ -44,8 +45,8 @@ export default function Footer() {
                         </div>
                         <div className='footer-address-info'>
                           <p>
-                            <a href='mailto:example@example.com'>
-                              example@example.com
+                            <a href='Contact@as-referencement.com'>
+                              Contact@as-referencement.com
                             </a>
                           </p>
                         </div>
@@ -55,129 +56,89 @@ export default function Footer() {
                   <div className='ltn__social-media mt-20'>
                     <ul>
                       <li>
-                        <a href='#' title='Facebook'>
+                        <a
+                          href='https://www.facebook.com/referencementas'
+                          title='Facebook'
+                        >
                           <i className='fab fa-facebook-f' />
                         </a>
                       </li>
                       <li>
-                        <a href='#' title='Twitter'>
-                          <i className='fab fa-twitter' />
+                        <a
+                          href='https://www.instagram.com/as.referencement/'
+                          title='Instagram'
+                        >
+                          <i className='fab fa-instagram' />
                         </a>
                       </li>
                       <li>
-                        <a href='#' title='Linkedin'>
+                        <a href='https://www.linkedin.com/company/as-r-f-rencement/' 
+                        title='Linkedin'>
                           <i className='fab fa-linkedin' />
-                        </a>
-                      </li>
-                      <li>
-                        <a href='#' title='Youtube'>
-                          <i className='fab fa-youtube' />
                         </a>
                       </li>
                     </ul>
                   </div>
                 </div>
               </div>
-              <div className='col-xl-2 col-md-6 col-sm-6 col-12'>
+              <div className='col-xl-3 col-md-6 col-sm-6 col-12'>
                 <div className='footer-widget footer-menu-widget clearfix'>
                   <h4 className='footer-title'>Company</h4>
                   <div className='footer-menu'>
                     <ul>
                       <li>
-                        <a href='about.html'>About</a>
+                        <a href='about'>About</a>
                       </li>
+
                       <li>
-                        <a href='blog.html'>Blog</a>
-                      </li>
-                      <li>
-                        <a href='shop.html'>All Products</a>
-                      </li>
-                      <li>
-                        <a href='locations.html'>Locations Map</a>
-                      </li>
-                      <li>
-                        <a href='faq.html'>FAQ</a>
-                      </li>
-                      <li>
-                        <a href='contact.html'>Contact us</a>
+                        <a href='contact-us'>Contact us</a>
                       </li>
                     </ul>
                   </div>
                 </div>
               </div>
-              <div className='col-xl-2 col-md-6 col-sm-6 col-12'>
+              <div className='col-xl-3 col-md-6 col-sm-6 col-12'>
                 <div className='footer-widget footer-menu-widget clearfix'>
                   <h4 className='footer-title'>Services</h4>
                   <div className='footer-menu'>
                     <ul>
                       <li>
-                        <a href='order-tracking.html'>Order tracking</a>
+                        <a href='search'>Search</a>
                       </li>
                       <li>
-                        <a href='wishlist.html'>Wish List</a>
+                        <a href='add-location'>Add location</a>
+                      </li>
+
+                      <li>
+                        <a href='signin'>Login</a>
                       </li>
                       <li>
-                        <a href='login.html'>Login</a>
-                      </li>
-                      <li>
-                        <a href='account.html'>My account</a>
-                      </li>
-                      <li>
-                        <a href='about.html'>Terms &amp; Conditions</a>
-                      </li>
-                      <li>
-                        <a href='about.html'>Promotional Offers</a>
+                        <a href='user-account'>My account</a>
                       </li>
                     </ul>
                   </div>
                 </div>
               </div>
-              <div className='col-xl-2 col-md-6 col-sm-6 col-12'>
+              <div className='col-xl-3 col-md-6 col-sm-6 col-12'>
                 <div className='footer-widget footer-menu-widget clearfix'>
                   <h4 className='footer-title'>Customer Care</h4>
                   <div className='footer-menu'>
                     <ul>
                       <li>
-                        <a href='login.html'>Login</a>
+                        <a href='search'>Search</a>
                       </li>
                       <li>
-                        <a href='account.html'>My account</a>
+                        <a href='add-location'>Add location</a>
+                      </li>
+
+                      <li>
+                        <a href='signin'>Login</a>
                       </li>
                       <li>
-                        <a href='wishlist.html'>Wish List</a>
-                      </li>
-                      <li>
-                        <a href='order-tracking.html'>Order tracking</a>
-                      </li>
-                      <li>
-                        <a href='faq.html'>FAQ</a>
-                      </li>
-                      <li>
-                        <a href='contact.html'>Contact us</a>
+                        <a href='user-account'>My account</a>
                       </li>
                     </ul>
                   </div>
-                </div>
-              </div>
-              <div className='col-xl-3 col-md-6 col-sm-12 col-12'>
-                <div className='footer-widget footer-newsletter-widget'>
-                  <h4 className='footer-title'>Newsletter</h4>
-                  <p>
-                    Subscribe to our weekly Newsletter and receive updates via
-                    email.
-                  </p>
-                  <div className='footer-newsletter'>
-                    <form action='#'>
-                      <input type='email' name='email' placeholder='Email*' />
-                      <div className='btn-wrapper'>
-                        <button className='theme-btn-1 btn' type='submit'>
-                          <i className='fas fa-location-arrow' />
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-                  <h5 className='mt-30'>We Accept</h5>
-                  <img src='img/icons/payment-4.png' alt='Payment Image' />
                 </div>
               </div>
             </div>
@@ -189,7 +150,7 @@ export default function Footer() {
               <div className='col-md-6 col-12'>
                 <div className='ltn__copyright-design clearfix'>
                   <p>
-                    All Rights Reserved @ Company{" "}
+                    All Rights Reserved @ AS Référencement{" "}
                     <span className='current-year' />
                   </p>
                 </div>
@@ -200,9 +161,7 @@ export default function Footer() {
                     <li>
                       <a href='#'>Terms &amp; Conditions</a>
                     </li>
-                    <li>
-                      <a href='#'>Claim</a>
-                    </li>
+
                     <li>
                       <a href='#'>Privacy &amp; Policy</a>
                     </li>
